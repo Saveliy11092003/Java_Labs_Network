@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  app1:
+    image: lab1
+    container_name: app1
+    networks:
+      - test
+    environment:
+      - IP_GROUP=ff02::101
+      - PORT=8081
+
+  app2:
+    image: lab1
+    container_name: app2
+    networks:
+      - test
+    environment:
+      - IP_GROUP=ff02::101
+      - PORT=8081
+  app3:
+    image: lab1
+    container_name: app3
+    networks:
+      - test
+    environment:
+      - IP_GROUP=ff02::101
+      - PORT=8081
+
+networks:
+  test:
+    enable_ipv6: true
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.150.70.0/16
+        - subnet: 2001:db8:abcd::0/64
